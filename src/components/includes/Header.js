@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import NetflixLogo from "../assets/netflix-logo.svg"
 import NetflixLogo2 from "../assets/Netflix_Logo_PMS.png"
 import LensIcon from "../assets/lens-icon.png"
@@ -8,11 +8,19 @@ import DropdownIcon from "../assets/dropdown.png"
 import ManageProfileIcon from "../assets/icons/profile.svg";
 import styled from 'styled-components'
 import { Link, NavLink } from 'react-router-dom'
+import { UserContext } from '../../App'
 
 function Header() {
     const [navbar, setNavbar] = useState(false)
     const [hover, setHover] = useState(false)
     const [hoverTwo, setHoverTwo] = useState(false)
+    const [search, setSearch] = useState("")
+    const {userData, updateUserData} = useContext(UserContext)
+
+
+    const handleLogOut = () => {
+        updateUserData({type: "logout"})
+    }
 
     const changeBackground = () => {
         if (window.scrollY >= 66) {
@@ -25,6 +33,10 @@ function Header() {
       useEffect(() => {
         window.addEventListener("scroll", changeBackground)
       })
+
+      let handleSearch = () => {
+        console.log(search)
+      }
   return (
     <HeaderSec bgcolor={navbar? "black": "transparent"}>
         <Wrapper>
@@ -59,10 +71,10 @@ function Header() {
                 <Ul>
                     <HeaderLi>
                         <LogoLens >
-                            <WhiteLensIcon condition={hover? "none": ""} onClick={(e) => e.preventDefault(hover? setHover(false): setHover(true))} src={LensIcon} alt="lensicon" />
+                            <WhiteLensIcon condition={hover? "none": ""} onClick={(e) => e.preventDefault(search? handleSearch() : hover? setHover(false): setHover(true))} src={LensIcon} alt="lensicon" />
                             <LogoLenImgDiv className='slide-left' condition={hover? "": "none"}>
-                                <BlackLensIcon onClick={(e) => e.preventDefault(hover? setHover(false): setHover(true))} src={LensIcon} alt="lensicon" />
-                                <SearchInput placeholder='Title, People, Genres' type="text" />
+                                <BlackLensIcon onClick={(e) => e.preventDefault(search? handleSearch() : hover? setHover(false): setHover(true))} src={LensIcon} alt="lensicon" />
+                                <SearchInput onChange={(e) => setSearch(e.target.value)} placeholder='Title, People, Genres' type="text" />
                             </LogoLenImgDiv>
                             
                         </LogoLens>
@@ -142,6 +154,9 @@ function Header() {
                                         <Logo src={ManageProfileIcon} alt="Icon" />
                                     </SettingIcon>
                                     <SettingName>Help Centre</SettingName>
+                                </SettingItem>
+                                <SettingItem>
+                                    <LogoutButton onClick={() => handleLogOut()}>Logout</LogoutButton>
                                 </SettingItem>
                             </ProfileSettingsList>
                         </ProfileDetail>}
@@ -317,6 +332,13 @@ const SettingIcon = styled(ProfileLogo)`
 `;
 const SettingName = styled(ProfileName)`
     font-size: 13px;
+`;
+
+const LogoutButton = styled.button`
+    width: 100%;
+    background-color: #333333;
+    color: white;
+    cursor: pointer;
 `;
 
 

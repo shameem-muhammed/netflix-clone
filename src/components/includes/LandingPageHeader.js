@@ -37,7 +37,7 @@ function LandingPageHeader() {
                     </SelectList>
                 </LanguageDiv>
                 <SignInDiv>
-                    <SignInButton><Connect to="/home">Sign In</Connect></SignInButton>
+                    <SignInButton><Connect to="/sign-in">Sign In</Connect></SignInButton>
                 </SignInDiv>
             </RightSideDiv>
         </Wrapper>

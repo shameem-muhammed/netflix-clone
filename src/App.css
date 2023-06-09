@@ -85,9 +85,10 @@
   height: 150px !important;
 } */
 
-.slider-set {
-  /* height: 250px; */
-}
+/* .slider-set {
+  height: 100%;
+  z-index: 100;
+} */
 
 .slick-slide {
   /* ... */
@@ -96,6 +97,11 @@
   height: 100px;
   margin-right: 10px;
   cursor: pointer;
+  transition: width 2s;
+}
+
+.slick-slide:hover {
+  width: 300px;
 }
 
 .hover-div {
@@ -105,9 +111,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
+  width: 300px;
+  height: 200px;
+  z-index: 1;
   font-size: 10px;
   background-color:rgba(0,0,0,0.4);
   text-align: center;

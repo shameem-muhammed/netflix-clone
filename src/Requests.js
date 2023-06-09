@@ -3,7 +3,7 @@ const key = "84978fd752c50f59c9499f0987a2b212";
 export const imageUrl = "https://image.tmdb.org/t/p/original/"
 
 export const requests = {
-    requestNewReleases: `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`,
+    requestNewReleases: `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=4`,
     requestPopular: `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`,
     requestTvShow: `https://api.themoviedb.org/3/tv/popular?api_key=${key}&language=en-US&page=1`,
     requestTrending: `https://api.themoviedb.org/3/trending/all/day?api_key=${key}`,

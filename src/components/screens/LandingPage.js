@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LandingPageHeader from "../includes/LandingPageHeader";
 import Hero from "../assets/landing-hero.png";
@@ -8,10 +8,18 @@ import HeroSub2 from "../assets/hero-sub-2.png";
 import HeroSub4 from "../assets/hero-sub-4.png";
 import PlusIcon from "../assets/plus-icon.svg";
 import Footer from "../includes/Footer";
+import { useNavigate } from "react-router-dom";
 
 // import { MainContainer } from './Home'
 
 function LandingPage() {
+  const [email, setEmail] = useState("")
+
+  let navigate = useNavigate()
+
+  let handleSubmit = () => {
+    navigate(`/sign-in/${email}`)
+  }
   return (
     <>
       <LandingPageHeader />
@@ -27,8 +35,8 @@ function LandingPage() {
                 Ready to watch? Enter your email to create or restart your
                 membership.
               </Label>
-              <Form action="home/">
-                <SubmitInput type="email" placeholder="Email address" />
+              <Form onSubmit={handleSubmit}>
+                <SubmitInput onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email address" />
                 <SubmitButton type="submit">
                   Get Started
                   <Span>
